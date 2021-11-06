@@ -7,7 +7,7 @@ namespace Sources.Setup
 {
     public class BallSetup
     {
-        public BallSetup(BallView view, Timer timer, ColorLibraries color)
+        public BallSetup(BallView view, Timer timer, ColorsLibrary color)
         {
             int reward = Random.Range(0, 10);
             int damage = Random.Range(0, 10);

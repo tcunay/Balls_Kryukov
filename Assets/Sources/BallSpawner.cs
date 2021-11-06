@@ -12,7 +12,7 @@ namespace Sources
     {
         [SerializeField] private BallView _template;
 
-        private ColorLibraries _colorLibraries = new ColorLibraries();
+        private ColorsLibrary _colorsLibrary = new ColorsLibrary();
         private Timer _timer = new Timer();
 
         private void Start()
@@ -36,7 +36,7 @@ namespace Sources
 
         private void Spawn()
         {
-            var ballSetup = new BallSetup(Instantiate(_template, transform), _timer, _colorLibraries);
+            var ballSetup = new BallSetup(Instantiate(_template, transform), _timer, _colorsLibrary);
         }
     }
 }
