@@ -8,6 +8,8 @@ namespace Sources.Model
     {
         public BallModel(Color color, int reward, int damage)
         {
+            Validator.Validate(color == default, reward < 0, damage < 0);
+
             Color = color;
             Reward = reward;
             Damage = damage;
@@ -19,10 +21,14 @@ namespace Sources.Model
 
         public event Action Destoyed;
 
-        public void Destroy()
+        public void OnClick()
+        {
+            Destroy();
+        }
+
+        private void Destroy()
         {
             Destoyed?.Invoke();
         }
     }
 }
-

@@ -1,6 +1,6 @@
 ﻿namespace Sources.Abstract
 {
-    public interface ISpeed
+    public interface IMoveable : IUpdateable
     {
         public float InitableSpeed { get; }
         public float CurrentSpeed { get; }
