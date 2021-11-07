@@ -1,6 +1,5 @@
-﻿using System;
+﻿using UnityEngine;
 using Sources.ExtensionMethods;
-using UnityEngine;
 using Sources.Libraries;
 using Sources.Model;
 using Sources.Setup;
@@ -38,15 +37,14 @@ namespace Sources.Root
         {
             var view = Instantiate(_template);
 
-            new BallSetup(view, _timer, _colorsLibrary, CalculateSpawnPosition(view.Size));
+            new BallSetup(view, _timer, _colorsLibrary, CalculateSpawnPosition(view));
         }
 
-        private Vector2 CalculateSpawnPosition(float viewSize)
+        private Vector2 CalculateSpawnPosition(BallView view)
         {
-            var xOffset = _camera.GetXAxisVisibility() + viewSize / 2;
-            var position = transform.position;
+            var xOffset = _camera.GetXAxisVisibility() + view.Size / 2;
 
-            return new Vector2(position.x + Random.Range(-xOffset, xOffset), position.y);
+            return new Vector2(transform.position.x + Random.Range(-xOffset, xOffset), transform.position.y);
         }
     }
 }
