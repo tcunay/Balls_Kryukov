@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sources.Libraries
 {
-    public abstract class Libraries<T>
+    public abstract class Library<T>
     {
         protected abstract List<T> ReturnedObjects { get; }
 

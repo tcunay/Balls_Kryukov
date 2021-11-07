@@ -4,7 +4,7 @@ using Sources.Abstract;
 
 namespace Sources.Model
 {
-    public class BallModel : IDamage, IDestroyable
+    public class BallModel : IModel, IDamage, IDestroyable, IClickable
     {
         public BallModel(Color color, int reward, int damage)
         {
@@ -21,7 +21,7 @@ namespace Sources.Model
 
         public event Action Destoyed;
 
-        public void OnClick()
+        public void Click()
         {
             Destroy();
         }

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Sources
 {
-    public class Validator
+    public static class Validator
     {
         public static void Validate(params bool[] conditions)
         {

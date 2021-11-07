@@ -1,20 +1,23 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Sources.Model;
 using Sources.Abstract;
 
 namespace Sources.View
 {
     [RequireComponent(typeof(MeshRenderer))]
-    public class BallView : MonoBehaviour, IClickable
+    [RequireComponent(typeof(SphereCollider))]
+    public class BallView : MonoBehaviour, IView
     {
         private BallModel _model;
         private BallMovement _movement;
         private MeshRenderer _renderer;
 
+        public IModel Model => _model;
+        public float Size => GetComponent<SphereCollider>().radius * 2;
+
         private void Awake()
         {
-            _renderer.GetComponent<MeshRenderer>();
+            _renderer = GetComponent<MeshRenderer>();
         }
 
         private void Update()
@@ -26,14 +29,9 @@ namespace Sources.View
         {
             _model = model;
             _movement = movement;
-
+            
             _renderer.material.color = _model.Color;
             _model.Destoyed += Destroy;
-        }
-
-        public void Click()
-        {
-            _model.OnClick();
         }
 
         private void Move()
