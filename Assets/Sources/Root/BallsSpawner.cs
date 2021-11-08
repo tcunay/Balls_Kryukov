@@ -12,6 +12,7 @@ namespace Sources.Root
     {
         [SerializeField] private BallView _template;
 
+        private readonly BallSetup _ballSetup = new BallSetup();
         private readonly ColorsLibrary _colorsLibrary = new ColorsLibrary();
         private readonly Timer _timer = new Timer();
 
@@ -37,12 +38,12 @@ namespace Sources.Root
         {
             var view = Instantiate(_template);
 
-            new BallSetup(view, _timer, _colorsLibrary, CalculateSpawnPosition(view));
+            _ballSetup.Setup(view, _timer, _colorsLibrary, CalculateSpawnPosition(view));
         }
 
         private Vector2 CalculateSpawnPosition(BallView view)
         {
-            var xOffset = _camera.GetXAxisVisibility() + view.Size / 2;
+            var xOffset = _camera.GetXAxisVisibility() - view.Size / 2;
 
             return new Vector2(transform.position.x + Random.Range(-xOffset, xOffset), transform.position.y);
         }

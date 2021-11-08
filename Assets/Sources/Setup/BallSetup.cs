@@ -8,7 +8,7 @@ namespace Sources.Setup
 {
     public class BallSetup
     {
-        public BallSetup(BallView view, IElapsedTimeCounter timer, ColorsLibrary color, Vector2 position)
+        public void Setup(BallView view, IElapsedTimeCounter timer, ColorsLibrary color, Vector2 position)
         {
             int reward = Random.Range(0, 10);
             int damage = Random.Range(0, 10);
