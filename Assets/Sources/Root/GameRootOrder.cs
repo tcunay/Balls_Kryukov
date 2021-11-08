@@ -5,13 +5,14 @@ namespace Sources.Root
 {
     public class GameRootOrder : MonoBehaviour
     {
-        [SerializeField] private List<RootEntity> _order;
+        [SerializeField] private Camera _camera;
+        [SerializeField] private List<CompositeEntity> _order;
 
         private void Awake()
         {
             foreach (var entity in _order)
             {
-                entity.Begin();
+                entity.Compose(_camera);
                 entity.enabled = true;
             }
         }

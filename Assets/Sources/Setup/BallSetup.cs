@@ -14,7 +14,7 @@ namespace Sources.Setup
             int damage = Random.Range(0, 10);
             float speed = Random.Range(0.5f, 2f);
             
-            var model = new BallModel(color.GetRandom(), reward, damage);
+            var model = new BallModel(new ImmediatelyDying(),color.GetRandom(), reward, damage);
             var movement = new BallMovement(timer, position, speed);
 
             view.Init(model, movement);

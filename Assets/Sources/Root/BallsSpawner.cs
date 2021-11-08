@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Sources.ExtensionMethods;
 using Sources.Libraries;
 using Sources.Model;
@@ -8,19 +9,25 @@ using Random = UnityEngine.Random;
 
 namespace Sources.Root
 {
-    public class BallsSpawner : RootEntity
+    public class BallsSpawner : CompositeEntity
     {
         [SerializeField] private BallView _template;
 
         private readonly BallSetup _ballSetup = new BallSetup();
         private readonly ColorsLibrary _colorsLibrary = new ColorsLibrary();
         private readonly Timer _timer = new Timer();
+        private readonly int _spawnInterval = 1;
 
         private Camera _camera;
 
-        private void Awake()
+        public override void Compose(Camera camera)
         {
-            _camera = Camera.main;
+            _camera = camera;
+        }
+
+        private void Start()
+        {
+            SetSpawnInterval();
         }
 
         private void Update()
@@ -28,9 +35,9 @@ namespace Sources.Root
             _timer.Update(Time.deltaTime);
         }
 
-        public override void Begin()
+        private void SetSpawnInterval()
         {
-            StartCoroutine(_timer.SetTickInterval(1));
+            StartCoroutine(_timer.SetTickInterval(_spawnInterval));
             _timer.Tick += Spawn;
         }
 
