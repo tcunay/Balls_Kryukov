@@ -8,10 +8,9 @@ namespace Sources.Model
         public event Action ValueChanged;
         public int Value { get; private set; }
 
-        public override void TakeDamage(int damage)
+        public override void TakeDamage(int damage = 0)
         {
-            if (damage < 0)
-                throw new InvalidOperationException(nameof(damage));
+            Validator.Validate(damage < 0);
 
             Value -= damage;
 
@@ -23,8 +22,7 @@ namespace Sources.Model
             
             ValueChanged?.Invoke();
 
-            if (Value < 0)
-                throw new InvalidOperationException(nameof(Value));
+            Validator.Validate(Value < 0);
         }
     }
 }

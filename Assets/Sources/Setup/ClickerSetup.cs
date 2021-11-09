@@ -1,14 +1,15 @@
-﻿using Sources.Model;
+﻿using UnityEngine;
+using Sources.Abstract;
+using Sources.Model;
 using Sources.View;
-using UnityEngine;
 
 namespace Sources.Setup
 {
     public class ClickerSetup
     {
-        public void Setup(ClickerView view, Camera camera)
+        public void Setup(ClickerView view, Camera camera, IScoreable scoreable)
         {
-            var model = new ClickerModel();
+            var model = new ClickerModel(scoreable);
 
             view.Init(model, camera);
         }

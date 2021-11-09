@@ -4,7 +4,7 @@ using Sources.Abstract;
 
 namespace Sources.Model
 {
-    public class BallModel : IModel, IDamage
+    public class BallModel : IClickable, IDamage
     {
         public BallModel(Damageable damageable, Color color, int reward, int damage)
         {

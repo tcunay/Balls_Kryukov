@@ -2,8 +2,8 @@
 
 namespace Sources.Abstract
 {
-    public interface IClickable : IView
+    public interface IClickable : IModel
     {
-        Damageable Damageable { get; }
+        int Reward { get; }
     }
 }

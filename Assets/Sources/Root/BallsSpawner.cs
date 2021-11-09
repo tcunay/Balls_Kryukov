@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Sources.ExtensionMethods;
 using Sources.Libraries;
@@ -20,9 +21,11 @@ namespace Sources.Root
 
         private Camera _camera;
 
-        public override void Compose(Camera camera)
+        public override void Compose(IDictionary<Type, dynamic> dictionary)
         {
-            _camera = camera;
+            _camera = dictionary[typeof(Camera)];
+            
+            Validator.Validate(_camera == null);
         }
 
         private void Start()

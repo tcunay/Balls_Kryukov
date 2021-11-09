@@ -6,7 +6,7 @@ namespace Sources.View
 {
     [RequireComponent(typeof(MeshRenderer))]
     [RequireComponent(typeof(SphereCollider))]
-    public class BallView : MonoBehaviour, IClickable
+    public class BallView : MonoBehaviour, IView
     {
         private BallModel _model;
         private BallMovement _movement;

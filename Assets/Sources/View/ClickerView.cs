@@ -1,7 +1,6 @@
-﻿using System;
+﻿using UnityEngine;
 using Sources.Abstract;
 using Sources.Model;
-using UnityEngine;
 
 namespace Sources.View
 {
@@ -20,17 +19,19 @@ namespace Sources.View
 
         private void Update()
         {
-            TryClickBall();
+            TryClick();
         }
 
-        private void TryClickBall()
+        private void TryClick()
         {
             if (!Input.GetMouseButtonDown(0)) return;
 
             if (!Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit)) return;
 
-            if (hit.collider.TryGetComponent(out IClickable clickable))
-                _model.Click(clickable);
+            if (!hit.collider.TryGetComponent(out IView view)) return;
+            
+            if(view.Model is IClickable model)
+                _model.Click(model);
         }
     }
 }

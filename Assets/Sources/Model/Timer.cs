@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
-using Sources.Abstract;
 using UnityEngine;
+using Sources.Abstract;
 
 namespace Sources.Model
 {

@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using Sources.Abstract;
+using Sources.Model;
 using Sources.Setup;
 using Sources.View;
 
@@ -11,17 +15,21 @@ namespace Sources.Root
         private readonly ClickerSetup _clickerSetup = new ClickerSetup();
 
         private Camera _camera;
-
-        public override void Compose(Camera camera)
+        private IScoreable _player;
+        
+        public override void Compose(IDictionary<Type, dynamic> dictionary)
         {
-            _camera = camera;
+            _camera = dictionary[typeof(Camera)];
+            _player = dictionary[typeof(PlayerModel)];
+            
+            Validator.Validate(_camera == null, _player == null);
         }
-
+        
         private void Start()
         {
             var view = Instantiate(_template);
 
-            _clickerSetup.Setup(view, _camera);
+            _clickerSetup.Setup(view, _camera, _player);
         }
     }
 }
