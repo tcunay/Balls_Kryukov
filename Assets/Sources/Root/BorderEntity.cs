@@ -23,7 +23,10 @@ namespace Sources.Root
             _player = dictionary[typeof(PlayerModel)];
 
             Validator.Validate(_template == null, _borderSetup == null, _camera == null, _player == null);
+        }
 
+        private void OnEnable()
+        {
             var borderView = SpawnView();
             _borderSetup.Setup(borderView, _player.Damageable);
         }

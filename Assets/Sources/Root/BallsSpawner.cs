@@ -30,9 +30,9 @@ namespace Sources.Root
             Validator.Validate(_camera == null);
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            SetSpawnInterval();
+            StartSpawningWithInterval();
         }
 
         private void Update()
@@ -40,7 +40,7 @@ namespace Sources.Root
             _timer.Update(Time.deltaTime);
         }
 
-        private void SetSpawnInterval()
+        private void StartSpawningWithInterval()
         {
             StartCoroutine(_timer.SetTickInterval(_spawnInterval));
             _timer.Tick += Spawn;

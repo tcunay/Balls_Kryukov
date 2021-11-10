@@ -25,7 +25,7 @@ namespace Sources.Root
             Validator.Validate(_camera == null, _player == null);
         }
         
-        private void Start()
+        private void OnEnable()
         {
             var view = Instantiate(_template);
 
