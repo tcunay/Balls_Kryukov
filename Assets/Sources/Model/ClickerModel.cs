@@ -5,15 +5,15 @@ namespace Sources.Model
 {
     public class ClickerModel: IClicker
     {
-        private readonly IScoreable _scoreable;
+        private readonly IScoreable _player;
 
         private IClickable _currentClickable;
         
         public event Action Killed;
 
-        public ClickerModel(IScoreable scoreable)
+        public ClickerModel(IScoreable player)
         {
-            _scoreable = scoreable;
+            _player = player;
         }
         
         public void Click(IClickable clickable)
@@ -29,7 +29,7 @@ namespace Sources.Model
 
         private void ReportKill()
         {
-            _scoreable.Add(_currentClickable.Reward);
+            _player.Add(_currentClickable.Reward);
         }
     }
 }

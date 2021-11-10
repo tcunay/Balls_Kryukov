@@ -21,6 +21,8 @@ namespace Sources.Root
 
         private Camera _camera;
 
+        public event Action<BallView> Spawned;
+
         public override void Compose(IDictionary<Type, dynamic> dictionary)
         {
             _camera = dictionary[typeof(Camera)];
@@ -46,9 +48,11 @@ namespace Sources.Root
 
         private void Spawn()
         {
-            var view = Instantiate(_template);
+            var ballView = Instantiate(_template);
 
-            _ballSetup.Setup(view, _timer, _colorsLibrary, CalculateSpawnPosition(view));
+            _ballSetup.Setup(ballView, _timer, _colorsLibrary, CalculateSpawnPosition(ballView));
+            
+            Spawned?.Invoke(ballView);
         }
 
         private Vector2 CalculateSpawnPosition(BallView view)

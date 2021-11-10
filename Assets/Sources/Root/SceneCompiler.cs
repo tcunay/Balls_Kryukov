@@ -10,7 +10,7 @@ namespace Sources.Root
         [SerializeField] private Camera _camera;
         [SerializeField] private List<CompositeEntity> _order;
 
-        private readonly PlayerModel _player = new PlayerModel();
+        private readonly PlayerModel _player = new PlayerModel(new Health(100));
         private readonly Dictionary<Type, dynamic> _composeObjects = new Dictionary<Type, dynamic>();
 
         private void Awake()
