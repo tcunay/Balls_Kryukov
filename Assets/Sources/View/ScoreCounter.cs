@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using Sources.Abstract;
-using Sources.Model;
 using Sources.Root;
 
 namespace Sources.View
@@ -13,10 +10,11 @@ namespace Sources.View
     {
         private TMP_Text _text;
         private IScore _player;
-
-        public override void Compose(IDictionary<Type, dynamic> dictionary)
+        
+        public override void Compose<T1>(T1 player)
         {
-            _player = dictionary[typeof(PlayerModel)];
+            _player = (IScore) player;
+            
             _player.ScoreChanged += ChangeTextValue;
             
             _text = GetComponent<TMP_Text>();

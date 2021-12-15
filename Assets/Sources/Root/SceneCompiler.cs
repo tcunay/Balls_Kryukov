@@ -11,22 +11,55 @@ namespace Sources.Root
         [SerializeField] private List<CompositeEntity> _order;
 
         private readonly PlayerModel _player = new PlayerModel(new Health(100));
-        private readonly Dictionary<Type, dynamic> _composeObjects = new Dictionary<Type, dynamic>();
 
         private void Awake()
         {
-            InitComposeObjects();
             foreach (var entity in _order)
             {
-                entity.Compose(_composeObjects);
+                PatametrsIterator.IterateOverAllParameters(entity, _player, _camera);
                 entity.enabled = true;
             }
         }
+    }
 
-        private void InitComposeObjects()
+    public class PatametrsIterator
+    {
+        public static void IterateOverAllParameters<T1>(CompositeEntity entity, T1 t1)
         {
-            _composeObjects.Add(_camera.GetType(), _camera);
-            _composeObjects.Add(_player.GetType(), _player);
+            entity.Compose(t1);
+        }
+
+        public static void IterateOverAllParameters<T1, T2>(CompositeEntity entity, T1 t1, T2 t2)
+        {
+            try
+            {
+                entity.Compose(t1);
+            }
+            catch
+            {
+                try
+                {
+                    entity.Compose(t2);
+                }
+                catch
+                {
+                    try
+                    {
+                        entity.Compose(t1, t2);
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            entity.Compose(t2, t1);
+                        }
+                        catch
+                        {
+                            throw new InvalidOperationException();
+                        }
+                    }
+                }
+            }
         }
     }
 }

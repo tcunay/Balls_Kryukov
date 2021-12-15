@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Sources.ExtensionMethods;
 using Sources.Libraries;
@@ -23,9 +22,9 @@ namespace Sources.Root
 
         public event Action<BallView> Spawned;
 
-        public override void Compose(IDictionary<Type, dynamic> dictionary)
+        public override void Compose<T1>(T1 t1)
         {
-            _camera = dictionary[typeof(Camera)];
+            _camera = t1 as Camera;
             
             Validator.Validate(_camera == null);
         }

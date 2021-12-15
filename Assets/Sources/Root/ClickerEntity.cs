@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Sources.Abstract;
-using Sources.Model;
 using Sources.Setup;
 using Sources.View;
 
@@ -17,14 +14,14 @@ namespace Sources.Root
         private Camera _camera;
         private IScoreable _player;
         
-        public override void Compose(IDictionary<Type, dynamic> dictionary)
+        public override void Compose<T1, T2>(T1 t1, T2 t2)
         {
-            _camera = dictionary[typeof(Camera)];
-            _player = dictionary[typeof(PlayerModel)];
+            _camera = t1 as Camera;
+            _player = (IScoreable) t2;
             
             Validator.Validate(_camera == null, _player == null);
         }
-        
+
         private void OnEnable()
         {
             var view = Instantiate(_template);
