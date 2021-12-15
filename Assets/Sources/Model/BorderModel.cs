@@ -19,7 +19,7 @@ namespace Sources.Model
 
         public void OnDamageCollision(IDamage ball)
         {
-            _player.TakeDamage(ball.Damage);
+            ball.ApplyDamage(_player);
         }
     }
 }

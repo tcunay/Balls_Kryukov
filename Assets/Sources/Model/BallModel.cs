@@ -19,5 +19,11 @@ namespace Sources.Model
         public Color Color { get; private set; }
         public int Reward { get; private set; }
         public int Damage { get; private set; }
+        
+        public void ApplyDamage(Damageable damageable)
+        {
+            damageable.TakeDamage(Damage);
+            Damageable.TakeDamage(0);
+        }
     }
 }
